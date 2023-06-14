@@ -6,4 +6,5 @@ A [BepInEx](https://github.com/BepInEx/BepInEx/releases) plugin for changing the
 - Configure or remove maximum repeats of powerups for endless and/or regular runs
 
 ## Changelog
-- v.1.0.:   Release
+- v.1.1.0:  Disabled submitting score on endless runs by default
+- v.1.0.0:  Release

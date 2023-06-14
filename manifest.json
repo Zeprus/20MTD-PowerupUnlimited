@@ -1,6 +1,6 @@
 {
     "name": "PowerupUnlimited",
-    "version_number": "1.0.1",
+    "version_number": "1.1.0",
     "website_url": "https://github.com/Zeprus/20MTD-PowerupUnlimited",
     "description": "Allows changing or removing the powerup cap in endless and normal runs.",
     "dependencies": ["BepInExPackMTD-BepInExPack_20MTD-1.0.0"]

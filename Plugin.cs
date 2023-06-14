@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Logging;
 using BepInEx.Configuration;
 using HarmonyLib;
 using System;
@@ -10,21 +11,26 @@ namespace PowerupUnlimited
     {
         public static ConfigEntry<int> RepeatPowerups;
         public static ConfigEntry<bool> EndlessOnly;
+        public static ConfigEntry<bool> SubmitLeaderboard;
+        internal static ManualLogSource Log;
         private void Awake()
         {
             RepeatPowerups = Config.Bind<int>("General", "RepeatPowerups", -1, "Amount of times powerups can repeat before the pool is depleted." + System.Environment.NewLine + "-1 for unlimited." + System.Environment.NewLine + "Game default: 3");
             EndlessOnly = Config.Bind<bool>("General", "EndlessOnly", true, "Only apply Powerup amount changes to endless.");
+            SubmitLeaderboard = Config.Bind<bool>("General", "SubmitLeaderboard", false, "Submit endless scores to the leaderboard with the mod enabled. Cheater.");
 
-            // Plugin startup logic
+            Log = Logger;
+
             try
             {
                 Harmony.CreateAndPatchAll(typeof(PowerupGeneratorPatch));
+                Harmony.CreateAndPatchAll(typeof(LeaderboardPatch));
             }
             catch (Exception e)
             {
-                Logger.LogError(e.Message);
+                Log.LogError(e.Message);
             }
-            Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+            Log.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
         }
     }
 }
